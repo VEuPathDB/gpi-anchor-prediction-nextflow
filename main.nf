@@ -2,25 +2,35 @@
 nextflow.enable.dsl=2
 
 
-process runpredGpi {
-  container= 'gpianchor:latest'
+//---------------------------------------------------------------
+// Param Checking 
+//---------------------------------------------------------------
 
-  publishDir "$params.outputDir", mode: "copy"
 
-  input:
-    path 'subset.fa'
-
-  output:
-    path 'output'
-
-  script:
-    """
-    predgpi.py -f subset.fa -o output -m $params.outputFormat
-    """
+if(params.inputFilePath) {
+  seqs = Channel.fromPath( params.inputFilePath )
 }
+else {
+  throw new Exception("Missing params.seqFile")
+}
+
+if(params.outputFormat != "gff3" && params.outputFormat != "json") {
+  throw new Exception("Invalid input for params.outputFormat. Expected values are 'gff3' and 'json'.")
+}
+
+
+//--------------------------------------------------------------------------
+// Includes
+//--------------------------------------------------------------------------
+
+include { GpiAnchorPrediction } from './modules/GpiAnchorPrediction.nf'
+
+//--------------------------------------------------------------------------
+// Main Workflow
+//--------------------------------------------------------------------------
 
 
 workflow {
   seqs = Channel.fromPath( params.inputFilePath )
-  runpredGpi(seqs)
+  GpiAnchorPrediction(seqs)
 }
