@@ -3,8 +3,6 @@ nextflow.enable.dsl=2
 
 
 process runpredGpi {
-  container= 'gpianchor:latest'
-
   publishDir "$params.outputDir", mode: "copy"
 
   input:
