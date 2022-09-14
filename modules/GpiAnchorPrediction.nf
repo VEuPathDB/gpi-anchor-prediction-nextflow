@@ -19,6 +19,7 @@ process runpredGpi {
 workflow GpiAnchorPrediction {
   take:
     seqs
+
   main:
     runpredGpi(seqs)
 }
