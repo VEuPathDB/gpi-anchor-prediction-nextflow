@@ -1,5 +1,15 @@
 # Nextflow Conversion of repeatMaskerTask.pm
 
+***<p align=center>GpiAnchorPrediction</p>***  
+```mermaid
+flowchart TD
+    p0((Channel.fromPath))
+    p1[GpiAnchorPrediction:runpredGpi]
+    p2(( ))
+    p0 -->|seqs| p1
+    p1 --> p2
+```
+
 ### Get Started
   * Install Nextflow
     
