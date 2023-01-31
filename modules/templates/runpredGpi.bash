@@ -2,6 +2,6 @@
 
 set -euo pipefail
 predgpi.py \
-    -f subset.fa \
+    -f $subsetFasta \
     -o output \
     -m $params.outputFormat

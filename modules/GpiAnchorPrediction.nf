@@ -6,7 +6,7 @@ process runpredGpi {
   publishDir "$params.outputDir", mode: "copy"
 
   input:
-    path 'subset.fa'
+    path subsetFasta
 
   output:
     path 'output'
