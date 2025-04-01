@@ -3,7 +3,7 @@ nextflow.enable.dsl=2
 
 
 process runpredGpi {
-  container = "veupathdb/gpianchorprediction:v1.0.0"
+  container = "veupathdb/gpianchorprediction:1.0.0"
 
   publishDir "$params.outputDir", mode: "copy"
 
